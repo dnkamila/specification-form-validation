@@ -19,20 +19,10 @@
                 integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
                 crossorigin="anonymous"></script>
 
-        <h1><%= header %></h1>
+        <header><%= header %></header>
+        <p><%= content.message %></p>
+        <footer><%= footer %></footer>
 
-        <form method="post" action="/form/client">
-            Order Id : <%= content.orderId %><br>
-            <input type="hidden" id="orderId" name="orderId" value="<%= content.orderId %>">
-            <label for="purchaseCode">Purchase Code : </label><input type="text" id="purchaseCode" name="purchaseCode"><br>
-            <label for="productCode">Product Code : </label>
-            <select id="productCode" name="productCode">
-                <% content.products.forEach(function (product) { %>
-                    <option value="<%= product.code %>"><%= product.code %></option>
-                <% }); %>
-            </select><br>
-            <label for="vendorEmail">Vendor Email : </label><input type="email" id="vendorEmail" name="vendorEmail"><br>
-            <input type="submit" value="submit">
-        </form>
+        <h6>click <a href="<%= content.redirectUrl %>">here</a> for redirecting to previous form</h6>
     </body>
 </html>
