@@ -1,9 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
         <title><%= title %></title>
     </head>
     <body>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous"></script>
+        <script type='text/javascript' src='/scripts/form-vendor.js'></script>
+
         <h1><%= header %></h1>
+
+        <div id="formVendor">
+            <form action="/form/vendor" method="post">
+                <label for="orderId">Order Id : </label><input type="text" id="orderId" name="orderId"><br>
+                <label for="vendorEmail">Vendor Email : </label><input type="email" id="vendorEmail" name="vendorEmail"><br>
+                <select id="productAttributeNames">
+                    <option value="" disabled selected>Select your option</option>
+                    <% content.productAttributes.forEach(function (productAttribute) { %>
+                        <option value="<%= productAttribute.id %>"><%= productAttribute.name %></option>
+                    <% }); %>
+                </select><br>
+                <div id="formVendorContent"></div>
+            </form>
+        </div>
     </body>
 </html>

@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 const indexController = require('./controllers/IndexController')
 const formClientController = require('./controllers/FormClientController')
 const formVendorController = require('./controllers/FormVendorController')
+const productAttributeController = require('./controllers/ProductAttributeController')
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: false,}))
 app.use('/', indexController)
 app.use('/form/client', formClientController)
 app.use('/form/vendor', formVendorController)
+app.use('/api/product-attribute', productAttributeController)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

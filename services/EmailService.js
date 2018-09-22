@@ -41,3 +41,33 @@ exports.generateOrderRequestEmail = (orderId, product) => {
 
   return content
 }
+
+exports.generateOrderSubmissionEmail = (orderId, vendorEmail, originProductDetail, vendorProductDetail) => {
+  console.log(TAG, 'generateOrderSubmissionEmail', 'orderId', orderId, 'vendorEmail', vendorEmail, 'originProductDetail', originProductDetail, 'vendorProductDetail', vendorProductDetail)
+
+  var content = `<h3>Order Id : ${orderId}</h3>`
+
+  content = `${content}<p>vendor [${vendorEmail}] has submitted order</p>`
+
+  content = `${content}<table border="1">`
+  content = `${content
+      }<tr>` +
+    '<th>key</th>' +
+    '<th>pertamina - request</th>' +
+    '<th>vendor - submission</th>' +
+    '</tr>'
+  Object.keys(originProductDetail).forEach((key) => {
+    content = `${content}<tr>`
+    content = `${content}<td>${key}</td>`
+    content = `${content}<td>${originProductDetail[key]}</td>`
+    if (originProductDetail[key] != vendorProductDetail[key]) {
+      content = `${content}<td><span style="color:red">${vendorProductDetail[key]}</span></td>`
+    } else {
+      content = `${content}<td>${vendorProductDetail[key]}</td>`
+    }
+    content = `${content}</tr>`
+  })
+  content = `${content}</table>`
+
+  return content
+}
